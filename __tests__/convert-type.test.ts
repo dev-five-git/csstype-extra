@@ -85,15 +85,40 @@ test.each([
         'borderImageSlice',
         '`${TNumber | TPercentage}${` ${TNumber | TPercentage}` | ""}${` ${TNumber | TPercentage}` | ""}${` ${TNumber | TPercentage}` | ""}${` fill` | ""}`',
     ],
-	// [
-	//     "<'border-image-source'> || <'border-image-slice'> [ / <'border-image-width'> | / <'border-image-width'>? / <'border-image-outset'> ]? || <'border-image-repeat'>",
-	//     'borderImage',
-	//     'BorderImageSource | `${BorderImageSlice}${` / ${BorderImageWidth}` | `/ ${` ${BorderImageWidth}` | ""}${"/"}${BorderImageOutset}`}` | ""}` | BorderImageRepeat | `${BorderImageSource} ${`${BorderImageSlice}${` ${`${"/"} ${BorderImageWidth}` | `${"/"}${` ${BorderImageWidth}` | ""}${"/"}${BorderImageOutset}`}` | ""}`} ${BorderImageRepeat}`',
-	// ],
     [
         "/ <'border-image-width'> | / <'border-image-width'>? / <'border-image-outset'>",
         'borderImageWidth',
-        '`/ ${BorderImageWidth}` | `/${` ${BorderImageOutset}` | ""} / ${BorderImageOutset}`',
+        '`/ ${BorderImageWidth}` | `/${` ${BorderImageWidth}` | ""} / ${BorderImageOutset}`',
+    ],
+	[
+	    "<'border-image-source'> || <'border-image-slice'> [ / <'border-image-width'> | / <'border-image-width'>? / <'border-image-outset'> ]? || <'border-image-repeat'>",
+	    'borderImage',
+	    'BorderImageSource | `${BorderImageSlice}${` ${`/ ${BorderImageWidth}` | `/${` ${BorderImageWidth}` | ""} / ${BorderImageOutset}`}` | ""}` | BorderImageRepeat | `${BorderImageSource} ${`${BorderImageSlice}${` ${`/ ${BorderImageWidth}` | `/${` ${BorderImageWidth}` | ""} / ${BorderImageOutset}`}` | ""}`} ${BorderImageRepeat}`',
+	],
+	[
+	    "<'border-image-slice'> [ / <'border-image-width'> | / <'border-image-width'>? / <'border-image-outset'> ]?",
+	    'borderImage',
+	    '`${BorderImageSlice}${` ${`/ ${BorderImageWidth}` | `/${` ${BorderImageWidth}` | ""} / ${BorderImageOutset}`}` | ""}`',
+	],
+    [
+        '<length-percentage [0,∞]>{1,4} [ / <length-percentage [0,∞]>{1,4} ]?',
+        'borderRadius',
+        '`${TLengthPercentage}${` ${TLengthPercentage}` | ""}${` ${TLengthPercentage}` | ""}${` ${TLengthPercentage}` | ""}${` ${`/ ${TLengthPercentage}${` ${TLengthPercentage}` | ""}${` ${TLengthPercentage}` | ""}${` ${TLengthPercentage}` | ""}`}` | ""}`',
+    ],
+    [
+        'normal | [ light | dark | <custom-ident> ]+ && only?',
+        'ColorScheme',
+        '"normal" | `${`${"light" | "dark" | TCustomIdent}${` ${ColorScheme}` | ""}`}${` only` | ""}`'
+    ],
+    [
+        'normal | none | [ <content-replacement> | <content-list> ] [ / [ <string> | <counter> | <attr()> ]+ ]?',
+        'Content',
+        '"normal" | "none" | `${TContentReplacement | TContentList}${` ${`/ ${`${TString | TCounter}${` ${Content}` | ""}`}`}` | ""}`',
+    ],
+    [
+        "[ [ <url> [ <x> <y> ]? , ]* <cursor-predefined> ]",
+        'Cursor',
+        '`${`${TUrl}${` ${TX} ${TY}` | ""}`} ` | (string & {}) ${TCursorPredefined}`',
     ]
 ])("convertType", (type, key, expected) => {
 	expect(convertType(key, type)).toEqual(expected);

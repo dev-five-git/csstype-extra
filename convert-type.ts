@@ -7,6 +7,7 @@ import { toPascalCase } from "./to-pascalcase";
  */
 export function convertType(key: string, type: string): string {
 	const ast = definitionSyntax.parse(type);
+    console.log("ast", JSON.stringify(ast, null, 2));
 	const result = convertNode(key, ast);
 	return typeof result === "string" ? result : "";
 }
@@ -43,7 +44,7 @@ function convertNode(key: string, node: DSNode, parent?: DSNode): string {
 					if (parent.terms.indexOf(node) === 0)
 						return `\`\${${convertNode(key, node.term)}} \` | ""`;
 					else {
-                        if(node.term.type === "Keyword" || node.term.type === "Group") {
+                        if(node.term.type === "Keyword" || (node.term.type === "Group" && node.term.terms.length > 1 && !node.term.terms.some((term) => term.type === "Group" || term.type === "Multiplier"))) {
                             return `\` ${convertNode(key, node.term)}\` | ""`;
                         }
                         return `\` \${${convertNode(key, node.term)}}\` | ""`;
@@ -70,10 +71,19 @@ function convertNode(key: string, node: DSNode, parent?: DSNode): string {
 					return `\`${convertNode(key, node.terms[0]!, node)}\``;
 				}
 				const contents = node.terms.filter((term) => term.type !== "Comma")
-					.map((term) => {
-                        if(term.type === "Multiplier" && term.min > 0 || term.type==="Keyword" || term.type==="Token") {
+					.map((term, idx, array) => {
+                        if(term.type === "Multiplier" && term.min > 0 && term.max > 0 || term.type==="Keyword" || term.type==="Token") {
+                            const spaceAround = term.type === "Token" && idx < array.length - 1 && array[idx + 1]?.type !== "Multiplier"
+                            if(spaceAround) {
+                                return ` ${convertNode(key, term, node)} `
+                            }
+                            const hasPostfix = term.type === "Token" && idx < array.length - 1 && array[idx + 1]?.type === "Multiplier" && array[idx + 1]?.min > 0
+                            if(hasPostfix) {
+                                return `${convertNode(key, term, node)} `
+                            }
                             return convertNode(key, term, node)
                         }
+
                         return `\${${convertNode(key, term, node)}}`
                     })
 					.filter(Boolean);
@@ -113,12 +123,22 @@ function convertNode(key: string, node: DSNode, parent?: DSNode): string {
 					);
 				default:
                     if (node.terms.length > 1) {
-                        return `${node.terms.map((node) => {
+                        console.log("parent", node)
+                        const wrap = !!parent || node.terms.some((term) => term.type === "Multiplier" && term.min > 0);
+                        if (wrap) {
+                            return `\`${node.terms.map((node) => {
+                                if(node.type === "Keyword" || node.type === "Token") {
+                                    return convertNode(key, node, node)
+                                }
+                                return `\${${convertNode(key, node, node)}}`;
+                            }).join(" ")}\``;
+                        }
+                        return node.terms.map((node) => {
                             if(node.type === "Keyword" || node.type === "Token") {
                                 return convertNode(key, node, node)
                             }
                             return `\${${convertNode(key, node, node)}}`;
-                        }).join(" ")}`;
+                        }).join(" ")
                     }
 					return normalContents.join("");
 			}
