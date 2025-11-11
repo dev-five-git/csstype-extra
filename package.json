@@ -1,5 +1,5 @@
 {
-  "name": "csstypes",
+  "name": "csstype-extra",
   "type": "module",
   "version": "0.1.4",
   "description": "Strict TypeScript types for style based on MDN data",
