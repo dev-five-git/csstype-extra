@@ -24,7 +24,7 @@ jobs:
         with:
           bun-version: latest
       - run: bun i
-      - run: bun test
+      - run: bun test --coverage
       - run: bun lint
       - run: bun run build
 
@@ -60,7 +60,7 @@ jobs:
         with:
           bun-version: latest
       - run: bun i
-      - run: bun test
+      - run: bun test --coverage --coverage-reporter=lcov
       - run: bun run build
       - name: Upload to codecov.io
         uses: codecov/codecov-action@v5
