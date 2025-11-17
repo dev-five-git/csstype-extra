@@ -85,14 +85,30 @@ export interface StandardLonghandProperties {
   borderTopStyle?: Property.BorderTopStyle | undefined
   borderTopWidth?: Property.BorderTopWidth | undefined
   bottom?: Property.Bottom | undefined
+  WebkitBoxAlign?: Property.WebkitBoxAlign | undefined
+  MozBoxAlign?: Property.MozBoxAlign | undefined
   boxAlign?: Property.BoxAlign | undefined
   boxDecorationBreak?: Property.BoxDecorationBreak | undefined
+  WebkitBoxDirection?: Property.WebkitBoxDirection | undefined
+  MozBoxDirection?: Property.MozBoxDirection | undefined
   boxDirection?: Property.BoxDirection | undefined
+  WebkitBoxFlex?: Property.WebkitBoxFlex | undefined
+  MozBoxFlex?: Property.MozBoxFlex | undefined
   boxFlex?: Property.BoxFlex | undefined
+  WebkitBoxFlexGroup?: Property.WebkitBoxFlexGroup | undefined
+  MozBoxFlexGroup?: Property.MozBoxFlexGroup | undefined
   boxFlexGroup?: Property.BoxFlexGroup | undefined
+  WebkitBoxLines?: Property.WebkitBoxLines | undefined
+  MozBoxLines?: Property.MozBoxLines | undefined
   boxLines?: Property.BoxLines | undefined
+  WebkitBoxOrdinalGroup?: Property.WebkitBoxOrdinalGroup | undefined
+  MozBoxOrdinalGroup?: Property.MozBoxOrdinalGroup | undefined
   boxOrdinalGroup?: Property.BoxOrdinalGroup | undefined
+  WebkitBoxOrient?: Property.WebkitBoxOrient | undefined
+  MozBoxOrient?: Property.MozBoxOrient | undefined
   boxOrient?: Property.BoxOrient | undefined
+  WebkitBoxPack?: Property.WebkitBoxPack | undefined
+  MozBoxPack?: Property.MozBoxPack | undefined
   boxPack?: Property.BoxPack | undefined
   boxShadow?: Property.BoxShadow | undefined
   boxSizing?: Property.BoxSizing | undefined
@@ -281,6 +297,7 @@ export interface StandardLonghandProperties {
   outlineWidth?: Property.OutlineWidth | undefined
   overflowAnchor?: Property.OverflowAnchor | undefined
   overflowBlock?: Property.OverflowBlock | undefined
+  MozOverflowClipBox?: Property.MozOverflowClipBox | undefined
   overflowClipBox?: Property.OverflowClipBox | undefined
   overflowClipMargin?: Property.OverflowClipMargin | undefined
   overflowInline?: Property.OverflowInline | undefined
@@ -1085,6 +1102,22 @@ export namespace Property {
   export type BorderTopStyle = TLineStyle | Globals | (string & {})
   export type BorderTopWidth = TLineWidth | Globals | (string & {})
   export type Bottom = 'auto' | TLengthPercentage | Globals | (string & {})
+  export type WebkitBoxAlign =
+    | 'start'
+    | 'center'
+    | 'end'
+    | 'baseline'
+    | 'stretch'
+    | Globals
+    | (string & {})
+  export type MozBoxAlign =
+    | 'start'
+    | 'center'
+    | 'end'
+    | 'baseline'
+    | 'stretch'
+    | Globals
+    | (string & {})
   export type BoxAlign =
     | 'start'
     | 'center'
@@ -1094,22 +1127,72 @@ export namespace Property {
     | Globals
     | (string & {})
   export type BoxDecorationBreak = 'slice' | 'clone' | Globals | (string & {})
+  export type WebkitBoxDirection =
+    | 'normal'
+    | 'reverse'
+    | 'inherit'
+    | Globals
+    | (string & {})
+  export type MozBoxDirection =
+    | 'normal'
+    | 'reverse'
+    | 'inherit'
+    | Globals
+    | (string & {})
   export type BoxDirection =
     | 'normal'
     | 'reverse'
     | 'inherit'
     | Globals
     | (string & {})
+  export type WebkitBoxFlex = number | Globals | (string & {})
+  export type MozBoxFlex = number | Globals | (string & {})
   export type BoxFlex = number | Globals | (string & {})
+  export type WebkitBoxFlexGroup = number | Globals | (string & {})
+  export type MozBoxFlexGroup = number | Globals | (string & {})
   export type BoxFlexGroup = number | Globals | (string & {})
+  export type WebkitBoxLines = 'single' | 'multiple' | Globals | (string & {})
+  export type MozBoxLines = 'single' | 'multiple' | Globals | (string & {})
   export type BoxLines = 'single' | 'multiple' | Globals | (string & {})
+  export type WebkitBoxOrdinalGroup = number | Globals | (string & {})
+  export type MozBoxOrdinalGroup = number | Globals | (string & {})
   export type BoxOrdinalGroup = number | Globals | (string & {})
+  export type WebkitBoxOrient =
+    | 'horizontal'
+    | 'vertical'
+    | 'inline-axis'
+    | 'block-axis'
+    | 'inherit'
+    | Globals
+    | (string & {})
+  export type MozBoxOrient =
+    | 'horizontal'
+    | 'vertical'
+    | 'inline-axis'
+    | 'block-axis'
+    | 'inherit'
+    | Globals
+    | (string & {})
   export type BoxOrient =
     | 'horizontal'
     | 'vertical'
     | 'inline-axis'
     | 'block-axis'
     | 'inherit'
+    | Globals
+    | (string & {})
+  export type WebkitBoxPack =
+    | 'start'
+    | 'center'
+    | 'end'
+    | 'justify'
+    | Globals
+    | (string & {})
+  export type MozBoxPack =
+    | 'start'
+    | 'center'
+    | 'end'
+    | 'justify'
     | Globals
     | (string & {})
   export type BoxPack =
@@ -1832,6 +1915,11 @@ export namespace Property {
     | 'clip'
     | 'scroll'
     | 'auto'
+    | Globals
+    | (string & {})
+  export type MozOverflowClipBox =
+    | 'padding-box'
+    | 'content-box'
     | Globals
     | (string & {})
   export type OverflowClipBox =
