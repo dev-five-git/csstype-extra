@@ -15,8 +15,9 @@
   "scripts": {
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
-    "build": "bun build.ts",
-    "prepare": "husky"
+    "build": "bun build.ts && biome check src --write",
+    "prepare": "husky",
+    "changepacks": "bunx @changepacks/cli"
   },
   "files": [
     "src"

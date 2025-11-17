@@ -22,6 +22,7 @@ const properties = (await fetch(
     syntax: string
     status: string
     computed?: string[] | string
+    groups?: string[]
   }
 >
 
@@ -98,6 +99,16 @@ for (const [property, value] of Object.entries(properties)) {
     else vendorLonghandProperties.push([property, value])
     continue
   }
+  for (const gr of [
+    ['WebKit Extensions', '-webkit-'],
+    ['Microsoft Extensions', '-ms-'],
+    ['Mozilla Extensions', '-moz-'],
+  ] as const)
+    if (value.groups?.includes(gr[0])) {
+      if (Array.isArray(value.computed))
+        standardShorthandProperties.push([`${gr[1]}${property}`, value])
+      else standardLonghandProperties.push([`${gr[1]}${property}`, value])
+    }
   if (Array.isArray(value.computed))
     standardShorthandProperties.push([property, value])
   else standardLonghandProperties.push([property, value])
