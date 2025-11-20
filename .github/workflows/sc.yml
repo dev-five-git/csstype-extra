@@ -1,0 +1,42 @@
+name: Schedule Build
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+permissions: write-all
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: index.d.ts size
+        run: |
+          echo "prev=$(wc -c src/index.d.ts | awk '{print $1}')" >> $GITHUB_OUTPUT
+        id: prev-size
+      - run: bun i
+      - run: bun test --coverage
+      - run: bun lint
+      - run: bun run build
+      - name: index.d.ts size
+        run: |
+          echo "new=$(wc -c src/index.d.ts | awk '{print $1}')" >> $GITHUB_OUTPUT
+        id: new-size
+
+      - name: Update Package
+        if: steps.new-size.outputs.new != steps.prev-size.outputs.prev
+        run: |
+          bunx @changepacks/cli -y --update patch -m "chore: update package version"
+          git add .
+          git commit -m "chore: update package version"
+          git push
