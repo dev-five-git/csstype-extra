@@ -48,7 +48,7 @@ jobs:
       - uses: changepacks/action@main
         # if: steps.new-size.outputs.new != steps.prev-size.outputs.prev
 
-      - name: Update Package
+      - name: Merge PR
         # if: steps.new-size.outputs.new != steps.prev-size.outputs.prev
         run: |
           git switch main
@@ -60,3 +60,8 @@ jobs:
       # Publish Package
       - uses: changepacks/action@main
         # if: steps.new-size.outputs.new != steps.prev-size.outputs.prev
+
+      - run: bun publish --access public --ignore-scripts
+        # if: steps.new-size.outputs.new != steps.prev-size.outputs.prev
+        env:
+          NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
