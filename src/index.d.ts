@@ -4692,4 +4692,5 @@ export type TViewportLength = 'auto' | TLengthPercentage | Globals
 export type TVisualBox = 'content-box' | 'padding-box' | 'border-box' | Globals
 export type TWqName = TNsPrefix | Globals
 export type TXyz = 'xyz' | 'xyz-d50' | 'xyz-d65' | Globals
+
 export type TXyzParams = TXyz | number | 'none' | Globals

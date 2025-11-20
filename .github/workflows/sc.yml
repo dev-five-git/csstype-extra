@@ -58,6 +58,8 @@ jobs:
             echo "No PR found for changepacks/main branch"
             exit 1
           fi
+        env:
+          GH_TOKEN: ${{ github.token }}
 
       # Publish Package
       - uses: changepacks/action@main
