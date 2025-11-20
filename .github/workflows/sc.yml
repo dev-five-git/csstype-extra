@@ -43,3 +43,18 @@ jobs:
           git add .
           git commit -m "chore: update package version"
           git push
+
+      # Create pr 
+      - uses: changepacks/action@main
+        if: steps.new-size.outputs.new != steps.prev-size.outputs.prev
+
+      - name: Update Package
+        if: steps.new-size.outputs.new != steps.prev-size.outputs.prev
+        run: |
+          git switch main
+          git merge changepacks/main
+          git push
+
+      # Publish Package
+      - uses: changepacks/action@main
+        if: steps.new-size.outputs.new != steps.prev-size.outputs.prev
