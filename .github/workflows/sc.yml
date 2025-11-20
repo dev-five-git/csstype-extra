@@ -34,7 +34,7 @@ jobs:
         id: new-size
 
       - name: Update Package
-        # if: steps.new-size.outputs.new != steps.prev-size.outputs.prev
+        if: steps.new-size.outputs.new != steps.prev-size.outputs.prev
         run: |
           bunx @changepacks/cli -y --update-type patch -m "chore: update package version"
           git config --global user.email "bot@github.com"
@@ -46,10 +46,10 @@ jobs:
 
       # Create pr 
       - uses: changepacks/action@main
-        # if: steps.new-size.outputs.new != steps.prev-size.outputs.prev
+        if: steps.new-size.outputs.new != steps.prev-size.outputs.prev
 
       - name: Merge PR
-        # if: steps.new-size.outputs.new != steps.prev-size.outputs.prev
+        if: steps.new-size.outputs.new != steps.prev-size.outputs.prev
         run: |
           PR_NUMBER=$(gh pr list --head changepacks/main --base main --json number --jq '.[0].number')
           if [ -n "$PR_NUMBER" ]; then
@@ -63,9 +63,9 @@ jobs:
 
       # Publish Package
       - uses: changepacks/action@main
-        # if: steps.new-size.outputs.new != steps.prev-size.outputs.prev
+        if: steps.new-size.outputs.new != steps.prev-size.outputs.prev
 
-      # - run: bun publish --access public --ignore-scripts
-      #   # if: steps.new-size.outputs.new != steps.prev-size.outputs.prev
-      #   env:
-      #     NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: bun publish --access public --ignore-scripts
+        if: steps.new-size.outputs.new != steps.prev-size.outputs.prev
+        env:
+          NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
