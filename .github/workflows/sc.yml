@@ -36,7 +36,7 @@ jobs:
       - name: Update Package
         if: steps.new-size.outputs.new != steps.prev-size.outputs.prev
         run: |
-          bunx @changepacks/cli -y --update patch -m "chore: update package version"
+          bunx @changepacks/cli -y --update-type patch -m "chore: update package version"
           git add .
           git commit -m "chore: update package version"
           git push
