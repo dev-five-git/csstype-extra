@@ -61,7 +61,7 @@ jobs:
       - uses: changepacks/action@main
         # if: steps.new-size.outputs.new != steps.prev-size.outputs.prev
 
-      - run: bun publish --access public --ignore-scripts
-        # if: steps.new-size.outputs.new != steps.prev-size.outputs.prev
-        env:
-          NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # - run: bun publish --access public --ignore-scripts
+      #   # if: steps.new-size.outputs.new != steps.prev-size.outputs.prev
+      #   env:
+      #     NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
