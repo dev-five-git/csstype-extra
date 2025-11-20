@@ -51,11 +51,13 @@ jobs:
       - name: Merge PR
         # if: steps.new-size.outputs.new != steps.prev-size.outputs.prev
         run: |
-          git switch main
-          git merge changepacks/main
-          # delete branch after merge
-          git branch -D changepacks/main
-          git push
+          PR_NUMBER=$(gh pr list --head changepacks/main --base main --json number --jq '.[0].number')
+          if [ -n "$PR_NUMBER" ]; then
+            gh pr merge $PR_NUMBER --merge --delete-branch
+          else
+            echo "No PR found for changepacks/main branch"
+            exit 1
+          fi
 
       # Publish Package
       - uses: changepacks/action@main
