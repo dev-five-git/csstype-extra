@@ -53,6 +53,8 @@ jobs:
         run: |
           git switch main
           git merge changepacks/main
+          # delete branch after merge
+          git branch -D changepacks/main
           git push
 
       # Publish Package
