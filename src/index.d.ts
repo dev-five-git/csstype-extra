@@ -2044,7 +2044,12 @@ export namespace Property {
     | 'fixed'
     | Globals
     | (string & {})
-  export type PositionAnchor = 'auto' | TAnchorName | Globals | (string & {})
+  export type PositionAnchor =
+    | 'auto'
+    | 'none'
+    | TAnchorName
+    | Globals
+    | (string & {})
   export type PositionArea = 'none' | TPositionArea | Globals | (string & {})
   export type PositionTryFallbacks =
     | 'none'
