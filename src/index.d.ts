@@ -38,6 +38,7 @@ export interface StandardLonghandProperties {
   backgroundRepeat?: Property.BackgroundRepeat | undefined
   backgroundSize?: Property.BackgroundSize | undefined
   baselineShift?: Property.BaselineShift | undefined
+  baselineSource?: Property.BaselineSource | undefined
   blockSize?: Property.BlockSize | undefined
   borderBlockColor?: Property.BorderBlockColor | undefined
   borderBlockEndColor?: Property.BorderBlockEndColor | undefined
@@ -116,6 +117,7 @@ export interface StandardLonghandProperties {
   breakBefore?: Property.BreakBefore | undefined
   breakInside?: Property.BreakInside | undefined
   captionSide?: Property.CaptionSide | undefined
+  caretAnimation?: Property.CaretAnimation | undefined
   caretColor?: Property.CaretColor | undefined
   caretShape?: Property.CaretShape | undefined
   clear?: Property.Clear | undefined
@@ -128,11 +130,13 @@ export interface StandardLonghandProperties {
   columnCount?: Property.ColumnCount | undefined
   columnFill?: Property.ColumnFill | undefined
   columnGap?: Property.ColumnGap | undefined
+  columnHeight?: Property.ColumnHeight | undefined
   columnRuleColor?: Property.ColumnRuleColor | undefined
   columnRuleStyle?: Property.ColumnRuleStyle | undefined
   columnRuleWidth?: Property.ColumnRuleWidth | undefined
   columnSpan?: Property.ColumnSpan | undefined
   columnWidth?: Property.ColumnWidth | undefined
+  columnWrap?: Property.ColumnWrap | undefined
   contain?: Property.Contain | undefined
   containIntrinsicBlockSize?: Property.ContainIntrinsicBlockSize | undefined
   containIntrinsicHeight?: Property.ContainIntrinsicHeight | undefined
@@ -142,6 +146,14 @@ export interface StandardLonghandProperties {
   containerType?: Property.ContainerType | undefined
   content?: Property.Content | undefined
   contentVisibility?: Property.ContentVisibility | undefined
+  cornerBottomLeftShape?: Property.CornerBottomLeftShape | undefined
+  cornerBottomRightShape?: Property.CornerBottomRightShape | undefined
+  cornerEndEndShape?: Property.CornerEndEndShape | undefined
+  cornerEndStartShape?: Property.CornerEndStartShape | undefined
+  cornerStartStartShape?: Property.CornerStartStartShape | undefined
+  cornerStartEndShape?: Property.CornerStartEndShape | undefined
+  cornerTopLeftShape?: Property.CornerTopLeftShape | undefined
+  cornerTopRightShape?: Property.CornerTopRightShape | undefined
   counterIncrement?: Property.CounterIncrement | undefined
   counterReset?: Property.CounterReset | undefined
   counterSet?: Property.CounterSet | undefined
@@ -152,6 +164,7 @@ export interface StandardLonghandProperties {
   direction?: Property.Direction | undefined
   display?: Property.Display | undefined
   dominantBaseline?: Property.DominantBaseline | undefined
+  dynamicRangeLimit?: Property.DynamicRangeLimit | undefined
   emptyCells?: Property.EmptyCells | undefined
   fieldSizing?: Property.FieldSizing | undefined
   fill?: Property.Fill | undefined
@@ -224,6 +237,9 @@ export interface StandardLonghandProperties {
   insetInlineStart?: Property.InsetInlineStart | undefined
   interpolateSize?: Property.InterpolateSize | undefined
   isolation?: Property.Isolation | undefined
+  interactivity?: Property.Interactivity | undefined
+  interestDelayEnd?: Property.InterestDelayEnd | undefined
+  interestDelayStart?: Property.InterestDelayStart | undefined
   justifyContent?: Property.JustifyContent | undefined
   justifyItems?: Property.JustifyItems | undefined
   justifySelf?: Property.JustifySelf | undefined
@@ -334,6 +350,8 @@ export interface StandardLonghandProperties {
   printColorAdjust?: Property.PrintColorAdjust | undefined
   quotes?: Property.Quotes | undefined
   r?: Property.R | undefined
+  readingFlow?: Property.ReadingFlow | undefined
+  readingOrder?: Property.ReadingOrder | undefined
   resize?: Property.Resize | undefined
   right?: Property.Right | undefined
   rotate?: Property.Rotate | undefined
@@ -355,6 +373,7 @@ export interface StandardLonghandProperties {
   scrollMarginLeft?: Property.ScrollMarginLeft | undefined
   scrollMarginRight?: Property.ScrollMarginRight | undefined
   scrollMarginTop?: Property.ScrollMarginTop | undefined
+  scrollMarkerGroup?: Property.ScrollMarkerGroup | undefined
   scrollPaddingBlockEnd?: Property.ScrollPaddingBlockEnd | undefined
   scrollPaddingBlockStart?: Property.ScrollPaddingBlockStart | undefined
   scrollPaddingBottom?: Property.ScrollPaddingBottom | undefined
@@ -372,6 +391,7 @@ export interface StandardLonghandProperties {
   scrollSnapType?: Property.ScrollSnapType | undefined
   scrollSnapTypeX?: Property.ScrollSnapTypeX | undefined
   scrollSnapTypeY?: Property.ScrollSnapTypeY | undefined
+  scrollTargetGroup?: Property.ScrollTargetGroup | undefined
   scrollTimelineAxis?: Property.ScrollTimelineAxis | undefined
   scrollTimelineName?: Property.ScrollTimelineName | undefined
   scrollbarColor?: Property.ScrollbarColor | undefined
@@ -404,6 +424,7 @@ export interface StandardLonghandProperties {
   textBoxTrim?: Property.TextBoxTrim | undefined
   textCombineUpright?: Property.TextCombineUpright | undefined
   textDecorationColor?: Property.TextDecorationColor | undefined
+  textDecorationInset?: Property.TextDecorationInset | undefined
   textDecorationLine?: Property.TextDecorationLine | undefined
   textDecorationSkip?: Property.TextDecorationSkip | undefined
   textDecorationSkipInk?: Property.TextDecorationSkipInk | undefined
@@ -488,6 +509,15 @@ export interface StandardShorthandProperties {
   columns?: Property.Columns | undefined
   containIntrinsicSize?: Property.ContainIntrinsicSize | undefined
   container?: Property.Container | undefined
+  cornerBlockEndShape?: Property.CornerBlockEndShape | undefined
+  cornerBlockStartShape?: Property.CornerBlockStartShape | undefined
+  cornerBottomShape?: Property.CornerBottomShape | undefined
+  cornerInlineEndShape?: Property.CornerInlineEndShape | undefined
+  cornerInlineStartShape?: Property.CornerInlineStartShape | undefined
+  cornerLeftShape?: Property.CornerLeftShape | undefined
+  cornerRightShape?: Property.CornerRightShape | undefined
+  cornerShape?: Property.CornerShape | undefined
+  cornerTopShape?: Property.CornerTopShape | undefined
   flex?: Property.Flex | undefined
   flexFlow?: Property.FlexFlow | undefined
   font?: Property.Font | undefined
@@ -501,6 +531,7 @@ export interface StandardShorthandProperties {
   inset?: Property.Inset | undefined
   insetBlock?: Property.InsetBlock | undefined
   insetInline?: Property.InsetInline | undefined
+  interestDelay?: Property.InterestDelay | undefined
   listStyle?: Property.ListStyle | undefined
   margin?: Property.Margin | undefined
   marginBlock?: Property.MarginBlock | undefined
@@ -969,6 +1000,12 @@ export namespace Property {
     | 'baseline'
     | Globals
     | (string & {})
+  export type BaselineSource =
+    | 'auto'
+    | 'first'
+    | 'last'
+    | Globals
+    | (string & {})
   export type BlockSize = Property.Width | Globals | (string & {})
   export type BorderBlockColor =
     | Property.BorderTopColor
@@ -1247,6 +1284,7 @@ export namespace Property {
     | Globals
     | (string & {})
   export type CaptionSide = 'top' | 'bottom' | Globals | (string & {})
+  export type CaretAnimation = 'auto' | 'manual' | Globals | (string & {})
   export type CaretColor = 'auto' | TColor | Globals | (string & {})
   export type CaretShape =
     | 'auto'
@@ -1290,11 +1328,13 @@ export namespace Property {
   export type ColumnCount = number | 'auto' | Globals | (string & {})
   export type ColumnFill = 'auto' | 'balance' | Globals | (string & {})
   export type ColumnGap = 'normal' | TLengthPercentage | Globals | (string & {})
+  export type ColumnHeight = 'auto' | number | Globals | (string & {})
   export type ColumnRuleColor = TColor | Globals | (string & {})
   export type ColumnRuleStyle = Property.BorderStyle | Globals | (string & {})
   export type ColumnRuleWidth = Property.BorderWidth | Globals | (string & {})
   export type ColumnSpan = 'none' | 'all' | Globals | (string & {})
-  export type ColumnWidth = number | 'auto' | Globals | (string & {})
+  export type ColumnWidth = 'auto' | number | Globals | (string & {})
+  export type ColumnWrap = 'auto' | 'nowrap' | 'wrap' | Globals | (string & {})
   export type Contain =
     | 'none'
     | 'strict'
@@ -1353,6 +1393,23 @@ export namespace Property {
     | 'hidden'
     | Globals
     | (string & {})
+  export type CornerBottomLeftShape =
+    | TCornerShapeValue
+    | Globals
+    | (string & {})
+  export type CornerBottomRightShape =
+    | TCornerShapeValue
+    | Globals
+    | (string & {})
+  export type CornerEndEndShape = TCornerShapeValue | Globals | (string & {})
+  export type CornerEndStartShape = TCornerShapeValue | Globals | (string & {})
+  export type CornerStartStartShape =
+    | TCornerShapeValue
+    | Globals
+    | (string & {})
+  export type CornerStartEndShape = TCornerShapeValue | Globals | (string & {})
+  export type CornerTopLeftShape = TCornerShapeValue | Globals | (string & {})
+  export type CornerTopRightShape = TCornerShapeValue | Globals | (string & {})
   export type CounterIncrement =
     | TCounterName
     | number
@@ -1397,6 +1454,12 @@ export namespace Property {
     | 'mathematical'
     | 'hanging'
     | 'text-top'
+    | Globals
+    | (string & {})
+  export type DynamicRangeLimit =
+    | 'standard'
+    | 'no-limit'
+    | 'constrained'
     | Globals
     | (string & {})
   export type EmptyCells = 'show' | 'hide' | Globals | (string & {})
@@ -1704,6 +1767,9 @@ export namespace Property {
     | Globals
     | (string & {})
   export type Isolation = 'auto' | 'isolate' | Globals | (string & {})
+  export type Interactivity = 'auto' | 'inert' | Globals | (string & {})
+  export type InterestDelayEnd = 'normal' | Globals | (string & {})
+  export type InterestDelayStart = 'normal' | Globals | (string & {})
   export type JustifyContent =
     | 'normal'
     | TContentDistribution
@@ -2068,6 +2134,17 @@ export namespace Property {
   export type PrintColorAdjust = 'economy' | 'exact' | Globals | (string & {})
   export type Quotes = 'none' | 'auto' | (string & {}) | Globals | (string & {})
   export type R = number | Globals | (string & {})
+  export type ReadingFlow =
+    | 'normal'
+    | 'source-order'
+    | 'flex-visual'
+    | 'flex-flow'
+    | 'grid-rows'
+    | 'grid-columns'
+    | 'grid-order'
+    | Globals
+    | (string & {})
+  export type ReadingOrder = number | Globals | (string & {})
   export type Resize =
     | 'none'
     | 'both'
@@ -2121,6 +2198,12 @@ export namespace Property {
   export type ScrollMarginLeft = number | Globals | (string & {})
   export type ScrollMarginRight = number | Globals | (string & {})
   export type ScrollMarginTop = number | Globals | (string & {})
+  export type ScrollMarkerGroup =
+    | 'none'
+    | 'before'
+    | 'after'
+    | Globals
+    | (string & {})
   export type ScrollPaddingBlockEnd =
     | 'auto'
     | TLengthPercentage
@@ -2208,6 +2291,7 @@ export namespace Property {
     | 'proximity'
     | Globals
     | (string & {})
+  export type ScrollTargetGroup = 'none' | 'auto' | Globals | (string & {})
   export type ScrollTimelineAxis =
     | 'block'
     | 'inline'
@@ -2326,6 +2410,7 @@ export namespace Property {
     | Globals
     | (string & {})
   export type TextDecorationColor = TColor | Globals | (string & {})
+  export type TextDecorationInset = number | 'auto' | Globals | (string & {})
   export type TextDecorationLine =
     | 'none'
     | 'underline'
@@ -2718,6 +2803,7 @@ export namespace Property {
   export type BorderWidth = TLineWidth | Globals | (string & {})
   export type Caret =
     | Property.CaretColor
+    | Property.CaretAnimation
     | Property.CaretShape
     | Globals
     | (string & {})
@@ -2730,6 +2816,7 @@ export namespace Property {
   export type Columns =
     | Property.ColumnWidth
     | Property.ColumnCount
+    | Property.ColumnHeight
     | Globals
     | (string & {})
   export type ContainIntrinsicSize =
@@ -2743,6 +2830,21 @@ export namespace Property {
     | Property.ContainerType
     | Globals
     | (string & {})
+  export type CornerBlockEndShape = TCornerShapeValue | Globals | (string & {})
+  export type CornerBlockStartShape =
+    | TCornerShapeValue
+    | Globals
+    | (string & {})
+  export type CornerBottomShape = TCornerShapeValue | Globals | (string & {})
+  export type CornerInlineEndShape = TCornerShapeValue | Globals | (string & {})
+  export type CornerInlineStartShape =
+    | TCornerShapeValue
+    | Globals
+    | (string & {})
+  export type CornerLeftShape = TCornerShapeValue | Globals | (string & {})
+  export type CornerRightShape = TCornerShapeValue | Globals | (string & {})
+  export type CornerShape = TCornerShapeValue | Globals | (string & {})
+  export type CornerTopShape = TCornerShapeValue | Globals | (string & {})
   export type Flex =
     | 'none'
     | Property.FlexGrow
@@ -2804,6 +2906,10 @@ export namespace Property {
   export type Inset = Property.Top | Globals | (string & {})
   export type InsetBlock = Property.Top | Globals | (string & {})
   export type InsetInline = Property.Top | Globals | (string & {})
+  export type InterestDelay =
+    | Property.InterestDelayStart
+    | Globals
+    | (string & {})
   export type ListStyle =
     | Property.ListStyleType
     | Property.ListStylePosition
@@ -3686,6 +3792,14 @@ export type TContentPosition =
 export type TContentReplacement = TImage | Globals
 export type TContextualAltValues = 'contextual' | 'no-contextual' | Globals
 export type TCoordBox = TPaintBox | 'view-box' | Globals
+export type TCornerShapeValue =
+  | 'round'
+  | 'scoop'
+  | 'bevel'
+  | 'notch'
+  | 'square'
+  | 'squircle'
+  | Globals
 export type TCounter = Globals
 export type TCounterName = Globals
 export type TCounterStyle = TCounterStyleName | Globals
