@@ -23,6 +23,7 @@ export interface StandardLonghandProperties {
   animationRangeStart?: Property.AnimationRangeStart | undefined
   animationTimeline?: Property.AnimationTimeline | undefined
   animationTimingFunction?: Property.AnimationTimingFunction | undefined
+  animationTrigger?: Property.AnimationTrigger | undefined
   appearance?: Property.Appearance | undefined
   aspectRatio?: Property.AspectRatio | undefined
   backdropFilter?: Property.BackdropFilter | undefined
@@ -447,6 +448,14 @@ export interface StandardLonghandProperties {
   textWrapMode?: Property.TextWrapMode | undefined
   textWrapStyle?: Property.TextWrapStyle | undefined
   timelineScope?: Property.TimelineScope | undefined
+  timelineTriggerName?: Property.TimelineTriggerName | undefined
+  timelineTriggerExitRangeEnd?: Property.TimelineTriggerExitRangeEnd | undefined
+  timelineTriggerExitRangeStart?:
+    | Property.TimelineTriggerExitRangeStart
+    | undefined
+  timelineTriggerRangeEnd?: Property.TimelineTriggerRangeEnd | undefined
+  timelineTriggerRangeStart?: Property.TimelineTriggerRangeStart | undefined
+  timelineTriggerSource?: Property.TimelineTriggerSource | undefined
   top?: Property.Top | undefined
   touchAction?: Property.TouchAction | undefined
   transform?: Property.Transform | undefined
@@ -459,6 +468,7 @@ export interface StandardLonghandProperties {
   transitionProperty?: Property.TransitionProperty | undefined
   transitionTimingFunction?: Property.TransitionTimingFunction | undefined
   translate?: Property.Translate | undefined
+  triggerScope?: Property.TriggerScope | undefined
   unicodeBidi?: Property.UnicodeBidi | undefined
   userSelect?: Property.UserSelect | undefined
   vectorEffect?: Property.VectorEffect | undefined
@@ -559,6 +569,9 @@ export interface StandardShorthandProperties {
   textDecoration?: Property.TextDecoration | undefined
   textEmphasis?: Property.TextEmphasis | undefined
   textWrap?: Property.TextWrap | undefined
+  timelineTrigger?: Property.TimelineTrigger | undefined
+  timelineTriggerExitRange?: Property.TimelineTriggerExitRange | undefined
+  timelineTriggerRange?: Property.TimelineTriggerRange | undefined
   transition?: Property.Transition | undefined
   viewTimeline?: Property.ViewTimeline | undefined
 }
@@ -947,6 +960,11 @@ export namespace Property {
     | (string & {})
   export type AnimationTimingFunction =
     | TEasingFunction
+    | Globals
+    | (string & {})
+  export type AnimationTrigger =
+    | 'none'
+    | TAnimationAction
     | Globals
     | (string & {})
   export type Appearance =
@@ -2546,6 +2564,41 @@ export namespace Property {
     | Globals
     | (string & {})
   export type TimelineScope = 'none' | Globals | (string & {})
+  export type TimelineTriggerName = 'none' | Globals | (string & {})
+  export type TimelineTriggerExitRangeEnd =
+    | 'auto'
+    | 'normal'
+    | TLengthPercentage
+    | TTimelineRangeName
+    | TLengthPercentage
+    | Globals
+    | (string & {})
+  export type TimelineTriggerExitRangeStart =
+    | 'auto'
+    | 'normal'
+    | TLengthPercentage
+    | TTimelineRangeName
+    | TLengthPercentage
+    | Globals
+    | (string & {})
+  export type TimelineTriggerRangeEnd =
+    | 'normal'
+    | TLengthPercentage
+    | TTimelineRangeName
+    | TLengthPercentage
+    | Globals
+    | (string & {})
+  export type TimelineTriggerRangeStart =
+    | 'normal'
+    | TLengthPercentage
+    | TTimelineRangeName
+    | TLengthPercentage
+    | Globals
+    | (string & {})
+  export type TimelineTriggerSource =
+    | TSingleAnimationTimeline
+    | Globals
+    | (string & {})
   export type Top = 'auto' | TLengthPercentage | Globals | (string & {})
   export type TouchAction =
     | 'auto'
@@ -2610,6 +2663,7 @@ export namespace Property {
     | number
     | Globals
     | (string & {})
+  export type TriggerScope = 'none' | 'all' | Globals | (string & {})
   export type UnicodeBidi =
     | 'normal'
     | 'embed'
@@ -3018,6 +3072,25 @@ export namespace Property {
   export type TextWrap =
     | Property.TextWrapMode
     | Property.TextWrapStyle
+    | Globals
+    | (string & {})
+  export type TimelineTrigger =
+    | 'none'
+    | Property.TimelineTriggerName
+    | Property.TimelineTriggerSource
+    | Property.TimelineTriggerRange
+    | "'/'"
+    | Property.TimelineTriggerExitRange
+    | Globals
+    | (string & {})
+  export type TimelineTriggerExitRange =
+    | Property.TimelineTriggerExitRangeStart
+    | Property.TimelineTriggerExitRangeEnd
+    | Globals
+    | (string & {})
+  export type TimelineTriggerRange =
+    | Property.TimelineTriggerRangeStart
+    | Property.TimelineTriggerRangeEnd
     | Globals
     | (string & {})
   export type Transition = TSingleTransition | Globals | (string & {})
@@ -3566,6 +3639,16 @@ export type TAngularColorStopList =
   | TAngularColorStop
   | Globals
 export type TAnimateableFeature = 'scroll-position' | 'contents' | Globals
+export type TAnimationAction =
+  | 'none'
+  | 'play'
+  | 'play-once'
+  | 'play-forwards'
+  | 'play-backwards'
+  | 'pause'
+  | 'reset'
+  | 'replay'
+  | Globals
 export type TAttachment = 'scroll' | 'fixed' | 'local' | Globals
 export type TAttrMatcher =
   | "'~'"
