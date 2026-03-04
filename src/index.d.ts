@@ -448,13 +448,19 @@ export interface StandardLonghandProperties {
   textWrapMode?: Property.TextWrapMode | undefined
   textWrapStyle?: Property.TextWrapStyle | undefined
   timelineScope?: Property.TimelineScope | undefined
-  timelineTriggerName?: Property.TimelineTriggerName | undefined
-  timelineTriggerExitRangeEnd?: Property.TimelineTriggerExitRangeEnd | undefined
-  timelineTriggerExitRangeStart?:
-    | Property.TimelineTriggerExitRangeStart
+  timelineTriggerActivationRangeEnd?:
+    | Property.TimelineTriggerActivationRangeEnd
     | undefined
-  timelineTriggerRangeEnd?: Property.TimelineTriggerRangeEnd | undefined
-  timelineTriggerRangeStart?: Property.TimelineTriggerRangeStart | undefined
+  timelineTriggerActivationRangeStart?:
+    | Property.TimelineTriggerActivationRangeStart
+    | undefined
+  timelineTriggerActiveRangeEnd?:
+    | Property.TimelineTriggerActiveRangeEnd
+    | undefined
+  timelineTriggerActiveRangeStart?:
+    | Property.TimelineTriggerActiveRangeStart
+    | undefined
+  timelineTriggerName?: Property.TimelineTriggerName | undefined
   timelineTriggerSource?: Property.TimelineTriggerSource | undefined
   top?: Property.Top | undefined
   touchAction?: Property.TouchAction | undefined
@@ -570,8 +576,10 @@ export interface StandardShorthandProperties {
   textEmphasis?: Property.TextEmphasis | undefined
   textWrap?: Property.TextWrap | undefined
   timelineTrigger?: Property.TimelineTrigger | undefined
-  timelineTriggerExitRange?: Property.TimelineTriggerExitRange | undefined
-  timelineTriggerRange?: Property.TimelineTriggerRange | undefined
+  timelineTriggerActivationRange?:
+    | Property.TimelineTriggerActivationRange
+    | undefined
+  timelineTriggerActiveRange?: Property.TimelineTriggerActiveRange | undefined
   transition?: Property.Transition | undefined
   viewTimeline?: Property.ViewTimeline | undefined
 }
@@ -2564,37 +2572,37 @@ export namespace Property {
     | Globals
     | (string & {})
   export type TimelineScope = 'none' | Globals | (string & {})
+  export type TimelineTriggerActivationRangeEnd =
+    | 'normal'
+    | TLengthPercentage
+    | TTimelineRangeName
+    | TLengthPercentage
+    | Globals
+    | (string & {})
+  export type TimelineTriggerActivationRangeStart =
+    | 'normal'
+    | TLengthPercentage
+    | TTimelineRangeName
+    | TLengthPercentage
+    | Globals
+    | (string & {})
+  export type TimelineTriggerActiveRangeEnd =
+    | 'auto'
+    | 'normal'
+    | TLengthPercentage
+    | TTimelineRangeName
+    | TLengthPercentage
+    | Globals
+    | (string & {})
+  export type TimelineTriggerActiveRangeStart =
+    | 'auto'
+    | 'normal'
+    | TLengthPercentage
+    | TTimelineRangeName
+    | TLengthPercentage
+    | Globals
+    | (string & {})
   export type TimelineTriggerName = 'none' | Globals | (string & {})
-  export type TimelineTriggerExitRangeEnd =
-    | 'auto'
-    | 'normal'
-    | TLengthPercentage
-    | TTimelineRangeName
-    | TLengthPercentage
-    | Globals
-    | (string & {})
-  export type TimelineTriggerExitRangeStart =
-    | 'auto'
-    | 'normal'
-    | TLengthPercentage
-    | TTimelineRangeName
-    | TLengthPercentage
-    | Globals
-    | (string & {})
-  export type TimelineTriggerRangeEnd =
-    | 'normal'
-    | TLengthPercentage
-    | TTimelineRangeName
-    | TLengthPercentage
-    | Globals
-    | (string & {})
-  export type TimelineTriggerRangeStart =
-    | 'normal'
-    | TLengthPercentage
-    | TTimelineRangeName
-    | TLengthPercentage
-    | Globals
-    | (string & {})
   export type TimelineTriggerSource =
     | TSingleAnimationTimeline
     | Globals
@@ -3078,19 +3086,19 @@ export namespace Property {
     | 'none'
     | Property.TimelineTriggerName
     | Property.TimelineTriggerSource
-    | Property.TimelineTriggerRange
+    | Property.TimelineTriggerActivationRange
     | "'/'"
-    | Property.TimelineTriggerExitRange
+    | Property.TimelineTriggerActiveRange
     | Globals
     | (string & {})
-  export type TimelineTriggerExitRange =
-    | Property.TimelineTriggerExitRangeStart
-    | Property.TimelineTriggerExitRangeEnd
+  export type TimelineTriggerActivationRange =
+    | Property.TimelineTriggerActivationRangeStart
+    | Property.TimelineTriggerActivationRangeEnd
     | Globals
     | (string & {})
-  export type TimelineTriggerRange =
-    | Property.TimelineTriggerRangeStart
-    | Property.TimelineTriggerRangeEnd
+  export type TimelineTriggerActiveRange =
+    | Property.TimelineTriggerActiveRangeStart
+    | Property.TimelineTriggerActiveRangeEnd
     | Globals
     | (string & {})
   export type Transition = TSingleTransition | Globals | (string & {})
