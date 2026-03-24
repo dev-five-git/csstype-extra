@@ -2,7 +2,7 @@ import { convertType } from './convert-type'
 import { toCamelCase } from './to-camelcase'
 import { toPascalCase } from './to-pascalcase'
 
-let output = `// biome-ignore lint/suspicious/noEmptyInterface: gen\nexport interface CustomColors{}\nexport as namespace CSS;\n`
+let output = `// biome-ignore lint/suspicious/noEmptyInterface: gen\nexport interface CustomColors{}\n// biome-ignore lint/suspicious/noEmptyInterface: gen\nexport interface CustomLength{}\n// biome-ignore lint/suspicious/noEmptyInterface: gen\nexport interface CustomShadows{}\nexport as namespace CSS;\n`
 
 const syntaxes = (await fetch(
   'https://raw.githubusercontent.com/mdn/data/refs/heads/main/css/syntaxes.json',
@@ -177,7 +177,7 @@ for (const [property, value] of Object.entries(syntaxes)) {
   if (property in customSyntaxes) {
     continue
   }
-  output += `export type T${toPascalCase(property)} = ${convertType(value.syntax.replace('<image |', '<image> |'), syntaxes)}${property === 'color' ? ' | keyof CustomColors' : ''};\n`
+  output += `export type T${toPascalCase(property)} = ${convertType(value.syntax.replace('<image |', '<image> |'), syntaxes)}${property === 'color' ? ' | keyof CustomColors' : property === 'length-percentage' ? ' | keyof CustomLength' : property === 'shadow' ? ' | keyof CustomShadows' : ''};\n`
 }
 
 Bun.write('src/index.d.ts', output)
