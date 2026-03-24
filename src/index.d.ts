@@ -1,5 +1,9 @@
 // biome-ignore lint/suspicious/noEmptyInterface: gen
 export interface CustomColors {}
+// biome-ignore lint/suspicious/noEmptyInterface: gen
+export interface CustomLength {}
+// biome-ignore lint/suspicious/noEmptyInterface: gen
+export interface CustomShadows {}
 export as namespace CSS
 export interface StandardLonghandProperties {
   accentColor?: Property.AccentColor | undefined
@@ -4155,7 +4159,7 @@ export type TKeyframeSelector =
 export type TKeyframesName = (string & {}) | Globals
 export type TLayerName = "'.'" | Globals
 export type TLeaderType = 'dotted' | 'solid' | 'space' | (string & {}) | Globals
-export type TLengthPercentage = number | Globals
+export type TLengthPercentage = number | Globals | keyof CustomLength
 export type TLineNameList = TLineNames | TNameRepeat | Globals
 export type TLineNames = "'['" | "']'" | Globals
 export type TLineStyle =
@@ -4661,7 +4665,7 @@ export type TSelfPosition =
   | 'flex-start'
   | 'flex-end'
   | Globals
-export type TShadow = 'inset' | number | TColor | Globals
+export type TShadow = 'inset' | number | TColor | Globals | keyof CustomShadows
 export type TShadowT = number | TColor | Globals
 export type TShape = Globals
 export type TShapeBox = TVisualBox | 'margin-box' | Globals
