@@ -2215,8 +2215,8 @@ export namespace Property {
     | 'inter-character'
     | Globals
     | (string & {})
-  export type Rx = number | Globals | (string & {})
-  export type Ry = number | Globals | (string & {})
+  export type Rx = TLengthPercentage | 'auto' | Globals | (string & {})
+  export type Ry = TLengthPercentage | 'auto' | Globals | (string & {})
   export type Scale = 'none' | number | Globals | (string & {})
   export type ScrollBehavior = 'auto' | 'smooth' | Globals | (string & {})
   export type ScrollInitialTarget = 'none' | 'nearest' | Globals | (string & {})
