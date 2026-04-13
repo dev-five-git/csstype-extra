@@ -653,9 +653,18 @@ export interface VendorLonghandProperties {
   MozWindowDragging?: Property.MozWindowDragging | undefined
   MozWindowShadow?: Property.MozWindowShadow | undefined
   WebkitAppearance?: Property.WebkitAppearance | undefined
+  WebkitBorderAfterColor?: Property.WebkitBorderAfterColor | undefined
+  WebkitBorderAfterStyle?: Property.WebkitBorderAfterStyle | undefined
+  WebkitBorderAfterWidth?: Property.WebkitBorderAfterWidth | undefined
   WebkitBorderBeforeColor?: Property.WebkitBorderBeforeColor | undefined
   WebkitBorderBeforeStyle?: Property.WebkitBorderBeforeStyle | undefined
   WebkitBorderBeforeWidth?: Property.WebkitBorderBeforeWidth | undefined
+  WebkitBorderEndColor?: Property.WebkitBorderEndColor | undefined
+  WebkitBorderEndStyle?: Property.WebkitBorderEndStyle | undefined
+  WebkitBorderEndWidth?: Property.WebkitBorderEndWidth | undefined
+  WebkitBorderStartColor?: Property.WebkitBorderStartColor | undefined
+  WebkitBorderStartStyle?: Property.WebkitBorderStartStyle | undefined
+  WebkitBorderStartWidth?: Property.WebkitBorderStartWidth | undefined
   WebkitBoxReflect?: Property.WebkitBoxReflect | undefined
   WebkitLineClamp?: Property.WebkitLineClamp | undefined
   WebkitMaskAttachment?: Property.WebkitMaskAttachment | undefined
@@ -686,7 +695,10 @@ export interface VendorShorthandProperties {
   msScrollSnapX?: Property.MsScrollSnapX | undefined
   msScrollSnapY?: Property.MsScrollSnapY | undefined
   MozOutlineRadius?: Property.MozOutlineRadius | undefined
+  WebkitBorderAfter?: Property.WebkitBorderAfter | undefined
   WebkitBorderBefore?: Property.WebkitBorderBefore | undefined
+  WebkitBorderEnd?: Property.WebkitBorderEnd | undefined
+  WebkitBorderStart?: Property.WebkitBorderStart | undefined
   WebkitMask?: Property.WebkitMask | undefined
   WebkitTextStroke?: Property.WebkitTextStroke | undefined
 }
@@ -3464,13 +3476,52 @@ export namespace Property {
     | '-apple-pay-button'
     | Globals
     | (string & {})
-  export type WebkitBorderBeforeColor = TColor | Globals | (string & {})
+  export type WebkitBorderAfterColor =
+    | Property.BorderTopColor
+    | Globals
+    | (string & {})
+  export type WebkitBorderAfterStyle =
+    | Property.BorderTopStyle
+    | Globals
+    | (string & {})
+  export type WebkitBorderAfterWidth =
+    | Property.BorderTopWidth
+    | Globals
+    | (string & {})
+  export type WebkitBorderBeforeColor =
+    | Property.BorderTopColor
+    | Globals
+    | (string & {})
   export type WebkitBorderBeforeStyle =
-    | Property.BorderStyle
+    | Property.BorderTopStyle
     | Globals
     | (string & {})
   export type WebkitBorderBeforeWidth =
-    | Property.BorderWidth
+    | Property.BorderTopWidth
+    | Globals
+    | (string & {})
+  export type WebkitBorderEndColor =
+    | Property.BorderTopColor
+    | Globals
+    | (string & {})
+  export type WebkitBorderEndStyle =
+    | Property.BorderTopStyle
+    | Globals
+    | (string & {})
+  export type WebkitBorderEndWidth =
+    | Property.BorderTopWidth
+    | Globals
+    | (string & {})
+  export type WebkitBorderStartColor =
+    | Property.BorderTopColor
+    | Globals
+    | (string & {})
+  export type WebkitBorderStartStyle =
+    | Property.BorderTopStyle
+    | Globals
+    | (string & {})
+  export type WebkitBorderStartWidth =
+    | Property.BorderTopWidth
     | Globals
     | (string & {})
   export type WebkitBoxReflect =
@@ -3584,12 +3635,10 @@ export namespace Property {
     | Globals
     | (string & {})
   export type MozOutlineRadius = TOutlineRadius | Globals | (string & {})
-  export type WebkitBorderBefore =
-    | Property.BorderWidth
-    | Property.BorderStyle
-    | TColor
-    | Globals
-    | (string & {})
+  export type WebkitBorderAfter = Property.BorderTop | Globals | (string & {})
+  export type WebkitBorderBefore = Property.BorderTop | Globals | (string & {})
+  export type WebkitBorderEnd = Property.BorderTop | Globals | (string & {})
+  export type WebkitBorderStart = Property.BorderTop | Globals | (string & {})
   export type WebkitMask =
     | TMaskReference
     | TPosition
