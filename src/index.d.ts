@@ -45,15 +45,12 @@ export interface StandardLonghandProperties {
   baselineShift?: Property.BaselineShift | undefined
   baselineSource?: Property.BaselineSource | undefined
   blockSize?: Property.BlockSize | undefined
-  borderBlockColor?: Property.BorderBlockColor | undefined
   borderBlockEndColor?: Property.BorderBlockEndColor | undefined
   borderBlockEndStyle?: Property.BorderBlockEndStyle | undefined
   borderBlockEndWidth?: Property.BorderBlockEndWidth | undefined
   borderBlockStartColor?: Property.BorderBlockStartColor | undefined
   borderBlockStartStyle?: Property.BorderBlockStartStyle | undefined
   borderBlockStartWidth?: Property.BorderBlockStartWidth | undefined
-  borderBlockStyle?: Property.BorderBlockStyle | undefined
-  borderBlockWidth?: Property.BorderBlockWidth | undefined
   borderBottomColor?: Property.BorderBottomColor | undefined
   borderBottomLeftRadius?: Property.BorderBottomLeftRadius | undefined
   borderBottomRightRadius?: Property.BorderBottomRightRadius | undefined
@@ -67,15 +64,12 @@ export interface StandardLonghandProperties {
   borderImageSlice?: Property.BorderImageSlice | undefined
   borderImageSource?: Property.BorderImageSource | undefined
   borderImageWidth?: Property.BorderImageWidth | undefined
-  borderInlineColor?: Property.BorderInlineColor | undefined
   borderInlineEndColor?: Property.BorderInlineEndColor | undefined
   borderInlineEndStyle?: Property.BorderInlineEndStyle | undefined
   borderInlineEndWidth?: Property.BorderInlineEndWidth | undefined
   borderInlineStartColor?: Property.BorderInlineStartColor | undefined
   borderInlineStartStyle?: Property.BorderInlineStartStyle | undefined
   borderInlineStartWidth?: Property.BorderInlineStartWidth | undefined
-  borderInlineStyle?: Property.BorderInlineStyle | undefined
-  borderInlineWidth?: Property.BorderInlineWidth | undefined
   borderLeftColor?: Property.BorderLeftColor | undefined
   borderLeftStyle?: Property.BorderLeftStyle | undefined
   borderLeftWidth?: Property.BorderLeftWidth | undefined
@@ -510,14 +504,20 @@ export interface StandardShorthandProperties {
   backgroundPosition?: Property.BackgroundPosition | undefined
   border?: Property.Border | undefined
   borderBlock?: Property.BorderBlock | undefined
+  borderBlockColor?: Property.BorderBlockColor | undefined
   borderBlockEnd?: Property.BorderBlockEnd | undefined
   borderBlockStart?: Property.BorderBlockStart | undefined
+  borderBlockStyle?: Property.BorderBlockStyle | undefined
+  borderBlockWidth?: Property.BorderBlockWidth | undefined
   borderBottom?: Property.BorderBottom | undefined
   borderColor?: Property.BorderColor | undefined
   borderImage?: Property.BorderImage | undefined
   borderInline?: Property.BorderInline | undefined
+  borderInlineColor?: Property.BorderInlineColor | undefined
   borderInlineEnd?: Property.BorderInlineEnd | undefined
   borderInlineStart?: Property.BorderInlineStart | undefined
+  borderInlineStyle?: Property.BorderInlineStyle | undefined
+  borderInlineWidth?: Property.BorderInlineWidth | undefined
   borderLeft?: Property.BorderLeft | undefined
   borderRadius?: Property.BorderRadius | undefined
   borderRight?: Property.BorderRight | undefined
@@ -1049,10 +1049,6 @@ export namespace Property {
     | Globals
     | (string & {})
   export type BlockSize = Property.Width | Globals | (string & {})
-  export type BorderBlockColor =
-    | Property.BorderTopColor
-    | Globals
-    | (string & {})
   export type BorderBlockEndColor =
     | Property.BorderTopColor
     | Globals
@@ -1074,14 +1070,6 @@ export namespace Property {
     | Globals
     | (string & {})
   export type BorderBlockStartWidth =
-    | Property.BorderTopWidth
-    | Globals
-    | (string & {})
-  export type BorderBlockStyle =
-    | Property.BorderTopStyle
-    | Globals
-    | (string & {})
-  export type BorderBlockWidth =
     | Property.BorderTopWidth
     | Globals
     | (string & {})
@@ -1124,10 +1112,6 @@ export namespace Property {
     | 'auto'
     | Globals
     | (string & {})
-  export type BorderInlineColor =
-    | Property.BorderTopColor
-    | Globals
-    | (string & {})
   export type BorderInlineEndColor =
     | Property.BorderTopColor
     | Globals
@@ -1149,14 +1133,6 @@ export namespace Property {
     | Globals
     | (string & {})
   export type BorderInlineStartWidth =
-    | Property.BorderTopWidth
-    | Globals
-    | (string & {})
-  export type BorderInlineStyle =
-    | Property.BorderTopStyle
-    | Globals
-    | (string & {})
-  export type BorderInlineWidth =
     | Property.BorderTopWidth
     | Globals
     | (string & {})
@@ -1372,8 +1348,8 @@ export namespace Property {
   export type ColumnGap = 'normal' | TLengthPercentage | Globals | (string & {})
   export type ColumnHeight = 'auto' | number | Globals | (string & {})
   export type ColumnRuleColor = TColor | Globals | (string & {})
-  export type ColumnRuleStyle = Property.BorderStyle | Globals | (string & {})
-  export type ColumnRuleWidth = Property.BorderWidth | Globals | (string & {})
+  export type ColumnRuleStyle = TLineStyle | Globals | (string & {})
+  export type ColumnRuleWidth = TLineWidth | Globals | (string & {})
   export type ColumnSpan = 'none' | 'all' | Globals | (string & {})
   export type ColumnWidth = 'auto' | number | Globals | (string & {})
   export type ColumnWrap = 'auto' | 'nowrap' | 'wrap' | Globals | (string & {})
@@ -2153,9 +2129,11 @@ export namespace Property {
     | Globals
     | (string & {})
   export type PositionAnchor =
+    | 'normal'
     | 'auto'
     | 'none'
     | TAnchorName
+    | 'match-parent'
     | Globals
     | (string & {})
   export type PositionArea = 'none' | TPositionArea | Globals | (string & {})
@@ -2816,17 +2794,19 @@ export namespace Property {
     | TColor
     | Globals
     | (string & {})
-  export type BorderBlock = Property.BorderBlockStart | Globals | (string & {})
-  export type BorderBlockEnd =
-    | Property.BorderTopWidth
-    | Property.BorderTopStyle
-    | TColor
+  export type BorderBlock = Property.BorderTop | Globals | (string & {})
+  export type BorderBlockColor =
+    | Property.BorderTopColor
     | Globals
     | (string & {})
-  export type BorderBlockStart =
-    | Property.BorderTopWidth
+  export type BorderBlockEnd = Property.BorderTop | Globals | (string & {})
+  export type BorderBlockStart = Property.BorderTop | Globals | (string & {})
+  export type BorderBlockStyle =
     | Property.BorderTopStyle
-    | TColor
+    | Globals
+    | (string & {})
+  export type BorderBlockWidth =
+    | Property.BorderTopWidth
     | Globals
     | (string & {})
   export type BorderBottom =
@@ -2845,17 +2825,19 @@ export namespace Property {
     | Property.BorderImageRepeat
     | Globals
     | (string & {})
-  export type BorderInline = Property.BorderBlockStart | Globals | (string & {})
-  export type BorderInlineEnd =
-    | Property.BorderTopWidth
-    | Property.BorderTopStyle
-    | TColor
+  export type BorderInline = Property.BorderTop | Globals | (string & {})
+  export type BorderInlineColor =
+    | Property.BorderTopColor
     | Globals
     | (string & {})
-  export type BorderInlineStart =
-    | Property.BorderTopWidth
+  export type BorderInlineEnd = Property.BorderTop | Globals | (string & {})
+  export type BorderInlineStart = Property.BorderTop | Globals | (string & {})
+  export type BorderInlineStyle =
     | Property.BorderTopStyle
-    | TColor
+    | Globals
+    | (string & {})
+  export type BorderInlineWidth =
+    | Property.BorderTopWidth
     | Globals
     | (string & {})
   export type BorderLeft =
