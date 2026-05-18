@@ -76,6 +76,7 @@ export interface StandardLonghandProperties {
   borderRightColor?: Property.BorderRightColor | undefined
   borderRightStyle?: Property.BorderRightStyle | undefined
   borderRightWidth?: Property.BorderRightWidth | undefined
+  borderShape?: Property.BorderShape | undefined
   borderSpacing?: Property.BorderSpacing | undefined
   borderStartEndRadius?: Property.BorderStartEndRadius | undefined
   borderStartStartRadius?: Property.BorderStartStartRadius | undefined
@@ -1142,6 +1143,12 @@ export namespace Property {
   export type BorderRightColor = TColor | Globals | (string & {})
   export type BorderRightStyle = TLineStyle | Globals | (string & {})
   export type BorderRightWidth = TLineWidth | Globals | (string & {})
+  export type BorderShape =
+    | 'none'
+    | TBasicShape
+    | TGeometryBox
+    | Globals
+    | (string & {})
   export type BorderSpacing = number | Globals | (string & {})
   export type BorderStartEndRadius =
     | Property.BorderTopLeftRadius
