@@ -483,6 +483,7 @@ export interface StandardLonghandProperties {
   viewTimelineName?: Property.ViewTimelineName | undefined
   viewTransitionClass?: Property.ViewTransitionClass | undefined
   viewTransitionName?: Property.ViewTransitionName | undefined
+  viewTransitionScope?: Property.ViewTransitionScope | undefined
   visibility?: Property.Visibility | undefined
   whiteSpace?: Property.WhiteSpace | undefined
   whiteSpaceCollapse?: Property.WhiteSpaceCollapse | undefined
@@ -2728,6 +2729,7 @@ export namespace Property {
     | 'match-element'
     | Globals
     | (string & {})
+  export type ViewTransitionScope = 'none' | 'all' | Globals | (string & {})
   export type Visibility =
     | 'visible'
     | 'hidden'
