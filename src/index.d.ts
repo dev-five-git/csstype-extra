@@ -207,6 +207,7 @@ export interface StandardLonghandProperties {
   fontWeight?: Property.FontWeight | undefined
   fontWidth?: Property.FontWidth | undefined
   forcedColorAdjust?: Property.ForcedColorAdjust | undefined
+  frameSizing?: Property.FrameSizing | undefined
   gridAutoColumns?: Property.GridAutoColumns | undefined
   gridAutoFlow?: Property.GridAutoFlow | undefined
   gridAutoRows?: Property.GridAutoRows | undefined
@@ -1697,6 +1698,14 @@ export namespace Property {
     | 'auto'
     | 'none'
     | 'preserve-parent-color'
+    | Globals
+    | (string & {})
+  export type FrameSizing =
+    | 'auto'
+    | 'content-width'
+    | 'content-height'
+    | 'content-block-size'
+    | 'content-inline-size'
     | Globals
     | (string & {})
   export type GridAutoColumns = TTrackSize | Globals | (string & {})
