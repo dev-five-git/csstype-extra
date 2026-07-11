@@ -52,6 +52,8 @@ jobs:
     needs:
       - changepacks
     if: contains(needs.changepacks.outputs.changepacks, 'package.json')
+    permissions:
+      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -68,6 +70,15 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
           files: ./coverage/lcov.info
-      - run: bun publish --access public --ignore-scripts
-        env:
-          NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # npm (not bun) does the actual publish: bun cannot perform the npm OIDC
+      # token exchange. Trusted Publishing needs npm >= 11.5.1.
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Ensure npm >= 11.5.1 (OIDC Trusted Publishing)
+        run: npm install -g npm@latest
+
+      - run: npm publish --access public --ignore-scripts
