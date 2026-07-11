@@ -13,6 +13,10 @@ concurrency:
 jobs:
   check:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -44,7 +48,7 @@ jobs:
           git commit -m "chore: update package version"
           git push
 
-      # Create pr 
+      # Create pr
       - uses: changepacks/action@main
         if: steps.new-size.outputs.new != steps.prev-size.outputs.prev
 
@@ -65,7 +69,17 @@ jobs:
       - uses: changepacks/action@main
         if: steps.new-size.outputs.new != steps.prev-size.outputs.prev
 
-      - run: bun publish --access public --ignore-scripts
+      # npm (not bun) does the actual publish: bun cannot perform the npm OIDC
+      # token exchange. Trusted Publishing needs npm >= 11.5.1.
+      - uses: actions/setup-node@v6
         if: steps.new-size.outputs.new != steps.prev-size.outputs.prev
-        env:
-          NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
+        with:
+          node-version: "24"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Ensure npm >= 11.5.1 (OIDC Trusted Publishing)
+        if: steps.new-size.outputs.new != steps.prev-size.outputs.prev
+        run: npm install -g npm@latest
+
+      - run: npm publish --access public --ignore-scripts
+        if: steps.new-size.outputs.new != steps.prev-size.outputs.prev
