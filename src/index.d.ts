@@ -252,6 +252,7 @@ export interface StandardLonghandProperties {
   lineClamp?: Property.LineClamp | undefined
   lineHeight?: Property.LineHeight | undefined
   lineHeightStep?: Property.LineHeightStep | undefined
+  linkParameters?: Property.LinkParameters | undefined
   listStyleImage?: Property.ListStyleImage | undefined
   listStylePosition?: Property.ListStylePosition | undefined
   listStyleType?: Property.ListStyleType | undefined
@@ -1865,6 +1866,7 @@ export namespace Property {
   export type LineClamp = 'none' | number | Globals | (string & {})
   export type LineHeight = 'normal' | number | Globals | (string & {})
   export type LineHeightStep = number | Globals | (string & {})
+  export type LinkParameters = 'none' | Globals | (string & {})
   export type ListStyleImage = TImage | 'none' | Globals | (string & {})
   export type ListStylePosition = 'inside' | 'outside' | Globals | (string & {})
   export type ListStyleType =
