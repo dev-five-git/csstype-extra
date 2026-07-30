@@ -174,6 +174,7 @@ export interface StandardLonghandProperties {
   flexBasis?: Property.FlexBasis | undefined
   flexDirection?: Property.FlexDirection | undefined
   flexGrow?: Property.FlexGrow | undefined
+  flexLineCount?: Property.FlexLineCount | undefined
   flexShrink?: Property.FlexShrink | undefined
   flexWrap?: Property.FlexWrap | undefined
   float?: Property.Float | undefined
@@ -1505,11 +1506,13 @@ export namespace Property {
     | Globals
     | (string & {})
   export type FlexGrow = number | Globals | (string & {})
+  export type FlexLineCount = number | Globals | (string & {})
   export type FlexShrink = number | Globals | (string & {})
   export type FlexWrap =
     | 'nowrap'
     | 'wrap'
     | 'wrap-reverse'
+    | 'balance'
     | Globals
     | (string & {})
   export type Float =
