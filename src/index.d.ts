@@ -341,6 +341,7 @@ export interface StandardLonghandProperties {
   pageBreakBefore?: Property.PageBreakBefore | undefined
   pageBreakInside?: Property.PageBreakInside | undefined
   paintOrder?: Property.PaintOrder | undefined
+  pathLength?: Property.PathLength | undefined
   perspective?: Property.Perspective | undefined
   perspectiveOrigin?: Property.PerspectiveOrigin | undefined
   pointerEvents?: Property.PointerEvents | undefined
@@ -2126,6 +2127,7 @@ export namespace Property {
     | 'markers'
     | Globals
     | (string & {})
+  export type PathLength = 'none' | number | '0' | Globals | (string & {})
   export type Perspective = 'none' | number | Globals | (string & {})
   export type PerspectiveOrigin = TPosition | Globals | (string & {})
   export type PointerEvents =
