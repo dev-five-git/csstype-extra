@@ -2454,7 +2454,11 @@ export namespace Property {
     | Globals
     | (string & {})
   export type TextDecorationColor = TColor | Globals | (string & {})
-  export type TextDecorationInset = number | 'auto' | Globals | (string & {})
+  export type TextDecorationInset =
+    | TLengthPercentage
+    | 'auto'
+    | Globals
+    | (string & {})
   export type TextDecorationLine =
     | 'none'
     | 'underline'
