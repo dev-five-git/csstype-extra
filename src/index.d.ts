@@ -437,6 +437,7 @@ export interface StandardLonghandProperties {
   textEmphasisColor?: Property.TextEmphasisColor | undefined
   textEmphasisPosition?: Property.TextEmphasisPosition | undefined
   textEmphasisStyle?: Property.TextEmphasisStyle | undefined
+  textFit?: Property.TextFit | undefined
   textIndent?: Property.TextIndent | undefined
   textJustify?: Property.TextJustify | undefined
   textOrientation?: Property.TextOrientation | undefined
@@ -2518,6 +2519,16 @@ export namespace Property {
     | 'triangle'
     | 'sesame'
     | (string & {})
+    | Globals
+    | (string & {})
+  export type TextFit =
+    | 'none'
+    | 'grow'
+    | 'shrink'
+    | 'consistent'
+    | 'per-line'
+    | 'per-line-all'
+    | number
     | Globals
     | (string & {})
   export type TextIndent =
