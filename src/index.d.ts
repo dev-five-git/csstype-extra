@@ -367,6 +367,7 @@ export interface StandardLonghandProperties {
   rx?: Property.Rx | undefined
   ry?: Property.Ry | undefined
   scale?: Property.Scale | undefined
+  scrollAxisLock?: Property.ScrollAxisLock | undefined
   scrollBehavior?: Property.ScrollBehavior | undefined
   scrollInitialTarget?: Property.ScrollInitialTarget | undefined
   scrollMarginBlockEnd?: Property.ScrollMarginBlockEnd | undefined
@@ -2233,6 +2234,7 @@ export namespace Property {
   export type Rx = TLengthPercentage | 'auto' | Globals | (string & {})
   export type Ry = TLengthPercentage | 'auto' | Globals | (string & {})
   export type Scale = 'none' | number | Globals | (string & {})
+  export type ScrollAxisLock = 'auto' | 'none' | Globals | (string & {})
   export type ScrollBehavior = 'auto' | 'smooth' | Globals | (string & {})
   export type ScrollInitialTarget = 'none' | 'nearest' | Globals | (string & {})
   export type ScrollMarginBlockEnd = number | Globals | (string & {})
