@@ -496,6 +496,7 @@ export interface StandardLonghandProperties {
   widows?: Property.Widows | undefined
   width?: Property.Width | undefined
   willChange?: Property.WillChange | undefined
+  windowDrag?: Property.WindowDrag | undefined
   wordBreak?: Property.WordBreak | undefined
   wordSpacing?: Property.WordSpacing | undefined
   wordWrap?: Property.WordWrap | undefined
@@ -2800,6 +2801,7 @@ export namespace Property {
     | TAnimateableFeature
     | Globals
     | (string & {})
+  export type WindowDrag = 'none' | 'move' | Globals | (string & {})
   export type WordBreak =
     | 'normal'
     | 'break-all'
