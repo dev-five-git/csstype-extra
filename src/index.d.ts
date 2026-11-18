@@ -125,6 +125,7 @@ export interface StandardLonghandProperties {
   clipPath?: Property.ClipPath | undefined
   clipRule?: Property.ClipRule | undefined
   color?: Property.Color | undefined
+  colorInterpolation?: Property.ColorInterpolation | undefined
   colorInterpolationFilters?: Property.ColorInterpolationFilters | undefined
   colorScheme?: Property.ColorScheme | undefined
   columnCount?: Property.ColumnCount | undefined
@@ -1345,6 +1346,13 @@ export namespace Property {
     | (string & {})
   export type ClipRule = 'nonzero' | 'evenodd' | Globals | (string & {})
   export type Color = TColor | Globals | (string & {})
+  export type ColorInterpolation =
+    | 'auto'
+    | 'sRGB'
+    | 'linearRGB'
+    | TColorInterpolationMethod
+    | Globals
+    | (string & {})
   export type ColorInterpolationFilters =
     | 'auto'
     | 'sRGB'
