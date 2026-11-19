@@ -1,0 +1,7 @@
+{
+  "changes": {
+    "package.json": "Patch"
+  },
+  "note": "chore: update package version",
+  "date": "2026-11-19T00:15:11.840470724Z"
+}

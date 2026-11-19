@@ -1902,7 +1902,13 @@ export namespace Property {
   export type MarginLeft = TLengthPercentage | 'auto' | Globals | (string & {})
   export type MarginRight = TLengthPercentage | 'auto' | Globals | (string & {})
   export type MarginTop = TLengthPercentage | 'auto' | Globals | (string & {})
-  export type MarginTrim = 'none' | 'in-flow' | 'all' | Globals | (string & {})
+  export type MarginTrim =
+    | 'none'
+    | 'block'
+    | 'block-start'
+    | 'block-end'
+    | Globals
+    | (string & {})
   export type Marker = 'none' | Globals | (string & {})
   export type MarkerEnd = 'none' | Globals | (string & {})
   export type MarkerMid = 'none' | Globals | (string & {})
